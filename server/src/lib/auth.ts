@@ -100,8 +100,6 @@ export const auth = betterAuth({
           }
         }
       }
-
-      return {};
     },
   },
 });
