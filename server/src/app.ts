@@ -40,24 +40,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 
-// Better Auth MUST be mounted with app.all (not app.use) so Express does NOT
-// strip the /api/auth prefix from req.url — Better Auth needs the full path.
-app.all("/api/auth", authLimiter, (req, res, next) => {
+app.use("/api/auth", authLimiter, (req, res, next) => {
   toNodeHandler(auth)(req as any, res as any).catch(next);
-});
-app.all("/api/auth/*", authLimiter, (req, res, next) => {
-  toNodeHandler(auth)(req as any, res as any).catch(next);
-});
-
-// Temporary DB connectivity diagnostic — remove after confirming DB works
-app.get("/api/db-test", async (req, res) => {
-  try {
-    const { db } = await import("./db/index.js");
-    const result = await (db as any).execute("SELECT 1 as ok");
-    res.json({ connected: true, result });
-  } catch (err: unknown) {
-    res.status(500).json({ connected: false, error: String(err) });
-  }
 });
 
 app.use("/api", routes);
