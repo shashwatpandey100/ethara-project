@@ -40,11 +40,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 
-// Better Auth MUST be mounted at app level (not inside a sub-router) so it
-// receives the full /api/auth/* path and can route requests correctly.
-// Express strips the mount prefix from req.url, so we restore originalUrl first.
-app.use("/api/auth", authLimiter, (req, res, next) => {
-  req.url = req.originalUrl;
+// Better Auth MUST be mounted with app.all (not app.use) so Express does NOT
+// strip the /api/auth prefix from req.url — Better Auth needs the full path.
+app.all("/api/auth", authLimiter, (req, res, next) => {
+  toNodeHandler(auth)(req as any, res as any).catch(next);
+});
+app.all("/api/auth/*", authLimiter, (req, res, next) => {
   toNodeHandler(auth)(req as any, res as any).catch(next);
 });
 
