@@ -20,14 +20,7 @@ app.use(generalLimiter);
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowed = env.CLIENT_URL.split(",").map((v) => v.trim());
-      if (!origin || allowed.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: true,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],

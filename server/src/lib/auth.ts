@@ -9,9 +9,7 @@ import { eq } from "drizzle-orm";
 import { env } from "../config/env.js";
 import { validatePassword } from "../utils/passwordValidation.js";
 
-const _clientOrigins = env.CLIENT_URL
-  ? env.CLIENT_URL.split(",").map((s) => s.trim())
-  : ["http://localhost:3000"];
+const _clientOrigins = ["*"];
 const _isProduction = env.NODE_ENV === "production";
 
 export const auth = betterAuth({
