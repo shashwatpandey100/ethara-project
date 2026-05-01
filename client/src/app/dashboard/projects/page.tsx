@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { getProjects } from "@/lib/api/projects";
 import type { Project } from "@/lib/api/projects";
@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 
-export default function ProjectsPage() {
+function ProjectsPageInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -135,5 +135,13 @@ export default function ProjectsPage() {
         onSuccess={fetchProjects}
       />
     </div>
+  );
+}
+
+export default function ProjectsPage() {
+  return (
+    <Suspense fallback={null}>
+      <ProjectsPageInner />
+    </Suspense>
   );
 }

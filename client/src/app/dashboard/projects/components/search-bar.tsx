@@ -3,9 +3,9 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export function SearchBar({ defaultValue }: { defaultValue: string }) {
+function SearchBarInner({ defaultValue }: { defaultValue: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [search, setSearch] = useState(defaultValue);
@@ -36,5 +36,13 @@ export function SearchBar({ defaultValue }: { defaultValue: string }) {
         className="h-10 px-12 shadow-none"
       />
     </div>
+  );
+}
+
+export function SearchBar({ defaultValue }: { defaultValue: string }) {
+  return (
+    <Suspense fallback={<div className="relative flex-1"><div className="h-10 rounded-md border bg-gray-50" /></div>}>
+      <SearchBarInner defaultValue={defaultValue} />
+    </Suspense>
   );
 }

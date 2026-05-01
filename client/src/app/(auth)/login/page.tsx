@@ -16,7 +16,7 @@ function getSafeRedirect(value: string | null): string {
   return value;
 }
 
-export default function SignInPage() {
+function SignInPageInner() {
   const searchParams = useSearchParams();
   const redirectTo = getSafeRedirect(searchParams.get("redirect"));
 
@@ -131,5 +131,13 @@ export default function SignInPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <React.Suspense fallback={null}>
+      <SignInPageInner />
+    </React.Suspense>
   );
 }
