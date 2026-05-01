@@ -10,19 +10,14 @@ router.use(authLimiter);
 
 const authHandler = toNodeHandler(auth);
 
-// Wrap with explicit error catching so crashes produce a readable body
-router.all("/*", (req: Request, res: Response, next: NextFunction) => {
-  Promise.resolve(authHandler(req as any, res as any)).catch((err: unknown) => {
+// Async wrapper so unhandled errors propagate to Express error handler
+router.all("/*", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await (authHandler as any)(req, res);
+  } catch (err: unknown) {
     console.error("[Auth Handler Error]", err);
-    if (!res.headersSent) {
-      res.status(500).json({
-        error: {
-          code: "INTERNAL_ERROR",
-          message: err instanceof Error ? err.message : "Internal server error",
-        },
-      });
-    }
-  });
+    next(err);
+  }
 });
 
 export default router;
