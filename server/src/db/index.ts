@@ -6,10 +6,15 @@ if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL environment variable is required");
 }
 
+// In Vercel serverless each invocation is isolated — use max:1 so we don't
+// exhaust Supabase's connection limit with pooled idle connections.
+const isServerless = process.env.VERCEL === "1";
+
 const client = postgres(process.env.DATABASE_URL, {
-  connect_timeout: 10,
-  idle_timeout: 30,
-  max_lifetime: 1800,
+  max: isServerless ? 1 : 10,
+  connect_timeout: 15,
+  idle_timeout: isServerless ? 0 : 30,
+  max_lifetime: isServerless ? 0 : 1800,
   onnotice: () => {},
 });
 
