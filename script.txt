@@ -1,0 +1,367 @@
+================================================================================
+  ETHARA — DEMO SCRIPT
+  AI-Powered Team Task Manager
+================================================================================
+
+  Live URL:  https://ethara-client.vercel.app
+  Duration:  ~8–10 minutes
+
+  BEFORE YOU START
+  ─────────────────
+  - Open https://ethara-client.vercel.app in a browser
+  - Have a second browser window / incognito ready for the second user
+  - Make sure you're logged out so the demo starts clean
+
+================================================================================
+  SECTION 1 — INTRODUCTION  (30 seconds)
+================================================================================
+
+  "Ethara is an AI-powered team task manager built for engineering teams.
+   It combines classic project management — projects, tasks, kanban boards —
+   with AI voice standups that automatically transcribe your daily standup
+   and convert spoken updates into actual tasks in your board.
+
+   Let me walk you through the full product end to end."
+
+================================================================================
+  SECTION 2 — AUTHENTICATION  (1 minute)
+================================================================================
+
+  STEP 1 — Show the login page
+  ─────────────────────────────
+  Navigate to: https://ethara-client.vercel.app/login
+
+  "The login page accepts both email and username.
+   We also have full OTP email verification on signup —
+   no magic links, just a clean 6-digit code flow."
+
+  STEP 2 — Sign in
+  ─────────────────
+  Email:    shashwatpandey100@gmail.com
+  Password: Password@123
+
+  Click Sign In.
+
+  "On success you're redirected straight to the dashboard.
+   Sessions last 7 days and refresh automatically in the background —
+   no annoying re-login prompts."
+
+================================================================================
+  SECTION 3 — DASHBOARD  (30 seconds)
+================================================================================
+
+  Navigate to: /dashboard
+
+  "The dashboard gives you a quick summary — your total projects,
+   task counts across statuses, and recent activity.
+   Everything updates in real time as your team makes changes."
+
+  Point out:
+  - Stats cards at the top (total projects, tasks by status)
+  - Recent activity feed
+
+================================================================================
+  SECTION 4 — PROJECTS  (1.5 minutes)
+================================================================================
+
+  Navigate to: /dashboard/projects
+
+  "Here's the projects list. Notice the table layout —
+   each row shows the project name, description, task count,
+   member count, and how long ago it was created."
+
+  STEP 1 — Search
+  ────────────────
+  Type something in the search bar.
+
+  "Search is debounced — it fires 300ms after you stop typing,
+   no full page reload, no submit button needed.
+   Pagination sits right next to search, only appears when there's more
+   than one page of results."
+
+  STEP 2 — Create a new project
+  ──────────────────────────────
+  Click "New Project".
+
+  Fill in:
+    Name:        Demo Sprint
+    Description: Live demo project for Ethara
+
+  Click Create.
+
+  "Project is created instantly. You're automatically the admin."
+
+  STEP 3 — Open the project
+  ──────────────────────────
+  Click on "Demo Sprint" in the table.
+
+  "This is the project view. Three tabs at the top:
+   Tasks, Standups, and Members.
+   Let's start with tasks."
+
+================================================================================
+  SECTION 5 — TASKS & KANBAN BOARD  (2 minutes)
+================================================================================
+
+  Navigate to the Tasks tab.
+
+  "The kanban board has four columns — To Do, In Progress, In Review, Done.
+   Columns grow vertically as you add tasks, they don't overflow or clip.
+   Let me add a few tasks to show the board in action."
+
+  STEP 1 — Add Task 1
+  ────────────────────
+  Click "Add Task" (top right).
+
+  Fill in:
+    Title:       Design login page
+    Description: Create wireframes and final UI for the login screen
+    Priority:    High
+    Due date:    (pick any date)
+
+  Click Create Task.
+
+  STEP 2 — Add Task 2
+  ────────────────────
+  Click "Add Task" again.
+
+  Fill in:
+    Title:    Set up database schema
+    Priority: Urgent
+
+  Click Create Task.
+
+  STEP 3 — Add Task 3
+  ────────────────────
+  Fill in:
+    Title:    Write API documentation
+    Priority: Low
+
+  Click Create Task.
+
+  "Now I have three tasks in To Do. Let me move one."
+
+  STEP 4 — Drag and drop
+  ───────────────────────
+  Drag "Design login page" from To Do → In Progress.
+
+  "Tasks can be dragged between columns.
+   The status updates immediately in the database."
+
+  STEP 5 — Open a task
+  ─────────────────────
+  Click on "Set up database schema".
+
+  "The task detail dialog shows all the metadata —
+   priority badge, status selector, assignee, due date.
+   There's a comments thread at the bottom for inline discussion.
+   Let me add a comment."
+
+  Type a comment: "Schema drafted, pending review."
+  Click send.
+
+  Close the dialog.
+
+  STEP 6 — Bulk delete
+  ─────────────────────
+  Check the checkbox on "Write API documentation".
+  Check "Design login page".
+
+  "When you select tasks a delete bar appears at the top.
+   Useful for cleaning up a sprint at end of cycle."
+
+  Click Delete Selected → confirm.
+
+================================================================================
+  SECTION 6 — MEMBERS  (45 seconds)
+================================================================================
+
+  Click the Members tab.
+
+  "Members panel shows everyone on the project with their role.
+   As admin I can invite new members via an invite link."
+
+  Click Invite.
+
+  "This generates a shareable join link.
+   Anyone with the link can join the project directly —
+   no manual approval needed, no email invite flow to set up."
+
+  Copy the link. Show it.
+
+  "In a real team scenario a second user would open this link,
+   sign up or log in, and instantly land in this project."
+
+  Close the invite dialog.
+
+================================================================================
+  SECTION 7 — VOICE STANDUPS  (3 minutes — the highlight)
+================================================================================
+
+  Click the Standups tab.
+
+  "This is the feature that makes Ethara different.
+   Instead of typing your daily standup into Slack or a ticket,
+   you just record it — like you'd say it in a real standup meeting.
+   The AI handles the rest."
+
+  STEP 1 — Open the recording dialog
+  ────────────────────────────────────
+  Click "Record Standup" (top right of the history section).
+
+  "A dialog opens. One big microphone button.
+   Click it to start."
+
+  STEP 2 — Record
+  ────────────────
+  Click the mic button. Start recording. Say something like:
+
+  --- SPEAK THIS ---
+  "Hey team, quick standup update.
+   Yesterday I finished the login page design and pushed it for review.
+   Today I'm working on setting up the database schema —
+   need to get the user and sessions tables in place.
+   One blocker: I'm waiting on the API keys from the infrastructure team,
+   so I can't test the auth flow until those come in."
+  --- END ---
+
+  Point at the waveform while recording:
+  "You can see the live waveform — the bars react to your voice in real time."
+
+  STEP 3 — Stop
+  ──────────────
+  Click the stop button (red square).
+
+  "Recording stops. An audio preview appears so you can
+   listen back before submitting."
+
+  Play the preview briefly.
+
+  STEP 4 — Add title and submit
+  ──────────────────────────────
+  In the title field type: Day 1 Standup
+
+  Click "Submit Standup".
+
+  "Ethara uploads the audio to cloud storage, sends it to Deepgram for
+   transcription, then passes the transcript to Google Gemini for analysis.
+   The standup card appears in the history immediately with a 'processing'
+   status. Let me refresh in a moment."
+
+  Wait 15–30 seconds, then refresh or watch the status update.
+
+  STEP 5 — Show the result
+  ─────────────────────────
+  Click on the standup row to expand it.
+
+  "The AI generates a structured summary — four sections:
+   what was accomplished, what's in progress, any blockers, key decisions.
+   Clean formatting, easy to skim.
+
+   Below that — this is the powerful part — the AI has extracted
+   actionable tasks from what I said."
+
+  Point at the extracted tasks:
+  - "Push login page for review"
+  - "Set up database schema"
+  - "Waiting on API keys — blocker"
+
+  "Each one has a priority and a suggested assignee based on what was said.
+   I can check the ones I want to create and click Create Selected."
+
+  STEP 6 — Create tasks from standup
+  ────────────────────────────────────
+  Check all extracted tasks.
+  Click "Create Selected".
+
+  "Those tasks are now on the kanban board.
+   No copy-pasting, no manual ticket creation.
+   One voice recording turns into a full set of tracked tasks."
+
+  Switch to Tasks tab to show the new tasks appeared.
+
+================================================================================
+  SECTION 8 — AI DIGEST  (30 seconds)
+================================================================================
+
+  Switch back to the project header (Tasks tab).
+  Click "AI Digest" button (top right, admin only).
+
+  "The AI Digest gives a project-level summary on demand.
+   It looks at all open tasks, their statuses and priorities,
+   and generates a paragraph summary of where the project stands."
+
+  Wait a moment for the digest to generate. Read it out.
+
+  "Useful for a quick async update to stakeholders —
+   no status meeting needed."
+
+================================================================================
+  SECTION 9 — SETTINGS  (30 seconds)
+================================================================================
+
+  Navigate to: /dashboard/settings
+
+  "The settings page covers three areas.
+   Profile — update your display name.
+   Password — change password with current password confirmation.
+   Session — sign out of this device or sign out everywhere."
+
+  Point at each section briefly.
+
+================================================================================
+  SECTION 10 — CLOSING  (30 seconds)
+================================================================================
+
+  "So that's Ethara end to end.
+
+   Projects and kanban boards are the foundation.
+   Members and roles keep access clean.
+   And the voice standup feature closes the loop —
+   your daily standup becomes your task list automatically.
+
+   The stack is Next.js 15 on the frontend, Express with Better Auth
+   on the backend, Drizzle ORM against PostgreSQL on Supabase,
+   Deepgram for transcription, and Gemini for AI summaries.
+   Both client and server deploy to Vercel."
+
+  Show: https://ethara-client.vercel.app
+  Show: https://github.com/shashwatpandey100/ethara-project
+
+  "Source code and full setup instructions are on GitHub.
+   Thank you."
+
+================================================================================
+  QUICK REFERENCE — THINGS TO HAVE OPEN
+================================================================================
+
+  Tab 1:  https://ethara-client.vercel.app/login
+  Tab 2:  Incognito window (for second-user demo if needed)
+
+  Credentials:
+    Email:    shashwatpandey100@gmail.com
+    Password: Password@123
+
+  URLs to mention:
+    Frontend:  https://ethara-client.vercel.app
+    API:       https://ethara-server.vercel.app
+    GitHub:    https://github.com/shashwatpandey100/ethara-project
+
+================================================================================
+  TIMING GUIDE
+================================================================================
+
+  Intro             0:00 – 0:30    30s
+  Auth              0:30 – 1:30    60s
+  Dashboard         1:30 – 2:00    30s
+  Projects          2:00 – 3:30    90s
+  Tasks             3:30 – 5:30   120s
+  Members           5:30 – 6:15    45s
+  Voice Standups    6:15 – 9:15   180s  ← most time here
+  AI Digest         9:15 – 9:45    30s
+  Settings          9:45 – 10:15   30s
+  Close            10:15 – 10:45   30s
+
+  Total: ~10 minutes
+
+================================================================================
