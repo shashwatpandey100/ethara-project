@@ -100,6 +100,8 @@ export const auth = betterAuth({
           }
         }
       }
+
+      return { response: ctx.response, headers: null };
     },
   },
 });
